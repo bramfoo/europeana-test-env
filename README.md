@@ -12,6 +12,11 @@ Build a fully functional [Vagrant](https://www.vagrantup.com/) test environment 
 *  Java 7, required for Solr
 
 ##To do
-* [Apache Tomcat](http://tomcat.apache.org/) web server, required for the API
-* [Europeana API](https://github.com/europeana/api2)
-* Content for all services 
+* Finalise Neo4j
+* Finalise Solr
+* Install [Apache Tomcat](http://tomcat.apache.org/) web server, required for the API
+* Install [Europeana API](https://github.com/europeana/api2)
+* Add content for
+** MongoDB
+** Neo4j
+** Solr 
