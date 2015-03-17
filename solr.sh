@@ -5,7 +5,9 @@ export SOLR_VERSION="4.10.1"
 export SOLR_NAME="solr-"${SOLR_VERSION}
 
 # Solr
-wget --quiet -O - https://archive.apache.org/dist/lucene/solr/${SOLR_VERSION}/${SOLR_NAME}.tgz
+# Taken from: http://docs.mongodb.org/v2.6/tutorial/install-mongodb-on-ubuntu/
+# Taken from: https://github.com/fideloper/Vaprobash/blob/master/scripts/mongodb.sh
+wget --quiet - https://archive.apache.org/dist/lucene/solr/${SOLR_VERSION}/${SOLR_NAME}.tgz
 tar -xvvf ${SOLR_NAME}.tgz
 
 rm ${SOLR_NAME}.tgz
