@@ -33,3 +33,6 @@ echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /u
 apt-get -y install oracle-java7-set-default > /dev/null
 export JAVA_HOME="/usr/lib/jvm/java-7-oracle/jre"
 echo '[bootstrap] Java 7 installed'
+
+# Other tools (Git, Maven ...)
+apt-get -y install git maven
