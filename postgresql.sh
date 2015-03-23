@@ -8,7 +8,7 @@ export POSTGRES_PASSWORD="vagrant"
 # Taken from: http://wiki.postgresql.org/wiki/Apt
 # Taken from: https://github.com/fideloper/Vaprobash/blob/master/scripts/pgsql.sh
 # Taken from: https://github.com/jackdb/pg-app-dev-vm
-echo "[databases] Setting up PostgreSQL..."
+echo "[databases] Start setting up PostgreSQL ..."
 
 # Install PostgreSQL
 # -qq implies -y --force-yes
@@ -33,3 +33,4 @@ sudo service postgresql restart
 sudo -u postgres psql -c "CREATE USER europeana WITH PASSWORD 'culture';"
 sudo -u postgres psql -c "CREATE DATABASE europeana OWNER europeana;"
 sudo -u postgres psql -U postgres -d europeana < /vagrant/europeana.sql > /dev/null
+echo "[databases] ... setting up PostgreSQL done."

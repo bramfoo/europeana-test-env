@@ -34,5 +34,12 @@ apt-get -y install oracle-java7-set-default > /dev/null
 export JAVA_HOME="/usr/lib/jvm/java-7-oracle/jre"
 echo '[bootstrap] Java 7 installed'
 
-# Other tools (Git, Maven ...)
-apt-get -y install git maven
+# Maven 3
+echo '[bootstrap] Installing Maven 3'
+apt-get -y install maven
+export M2_HOME='/usr/share/maven'
+export PATH=$M2_HOME/bin:$PATH
+
+# Git 1.9.x
+echo '[bootstrap] Installing Git 1.9.x'
+apt-get -y install git

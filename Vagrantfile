@@ -31,6 +31,8 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 5432, host: 15432
   # Neo4j
   config.vm.network "forwarded_port", guest: 7474, host: 17474
+  # Tomcat
+  config.vm.network "forwarded_port", guest: 8080, host: 18080
 
   
   # Create a private network, which allows host-only access to the machine
@@ -54,13 +56,14 @@ Vagrant.configure(2) do |config|
   #
   config.vm.provider "virtualbox" do |vb|
     vb.name = "Europeana_TestEnv_0.1"
-  end
+
   #   # Display the VirtualBox GUI when booting the machine
   #   vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-  #   vb.memory = "1024"
-  # end
+
+    vb.memory = "1024"
+  end
   #
   # View the documentation for the provider you are using for more
   # information on available options.
@@ -87,6 +90,10 @@ Vagrant.configure(2) do |config|
   #config.vm.provision :shell, path: "neo4j.sh", privileged:false
   # Provision search (Solr)
   #config.vm.provision :shell, path: "solr.sh", privileged:false
+  
+  config.vm.provision :shell, path: "buildapi.sh", privileged:false
+  
+  config.vm.provision :shell, path: "tomcat.sh", privileged:false
 
   config.vm.provision "shell", inline: <<-SHELL
     PROVISIONED_ON=/etc/vm_provision_on_timestamp
