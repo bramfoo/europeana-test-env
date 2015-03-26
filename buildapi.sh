@@ -15,6 +15,11 @@ PROPERTY_FILE_DIR="/vagrant"
 PROPERTY_FILE="europeana.properties"
 EUROPEANA_PROPERTIES=$PROPERTY_FILE_DIR"/"$PROPERTY_FILE
 
+TOMCAT_VERSION="7.0.59"
+TOMCAT_DIR=apache-tomcat-$TOMCAT_VERSION
+TOMCAT_WEBAPP_DIR="$TOMCAT_DIR"/webapps
+
+
 # remove directories if existing, re-create them
 echo "[build api] creating directories ..."
 if [ -d $API_HOME ]; then
@@ -35,7 +40,7 @@ git clone $API_GIT_URL
 # change to desired build
 if [ $GIT_BRANCH != "master" ]; then
   cd $CORELIB_HOME
-  echo "[build api] checking out desired git branch '$GIT_BRANCH' for CORELIB ..."
+  echo "[build api] checking out desired git branch '$GIT_BRANCH' for CoreLib ..."
   git checkout $GIT_BRANCH
   cd $API_HOME
   echo "[build api] checking out desired git branch '$GIT_BRANCH' for API ..."
@@ -48,16 +53,14 @@ mkdir -p "$API_HOME/properties/personal/"
 cp $EUROPEANA_PROPERTIES "$API_HOME/properties/personal/"
 
 # building corelib
-echo "[build api] Building CORELIB ... (fetching dependencies may take a while)"
+echo "[build api] Building CoreLib ... (fetching dependencies may take a while)"
 cd $CORELIB_HOME
 mvn -q clean install -DskipTests
-echo "[build api] CORELIB successfully built. Building API ... (fetching dependencies may take a while)"
+echo "[build api] CoreLib successfully built. Building API ... (fetching dependencies may take a while)"
 cd $API_HOME
 mvn -q clean install -DskipTests -P personal
 echo "[build api] API successfully built."
 
-
-
-
-
-mvn clean install -DskipTests -P personal
+# copy api wars to Tomcat
+#cp $API_HOME/api2-demo/target/api-demo.war $TOMCAT_WEBAPP_DIR
+cp $API_HOME/api2-war/target/api.war $TOMCAT_WEBAPP_DIR
