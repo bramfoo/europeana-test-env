@@ -28,6 +28,7 @@ export CATALINA_OPTS=$CATALINA_OPTS" "$EUROPEANA_OPTS
 export JAVA_OPTS=" -Xms512m -Xmx1024m -XX:MaxPermSize=256m -XX:-UseSplitVerifier"
 
 # Enable HTML GUI and status page access
+# From: http://stackoverflow.com/a/11695086
 sed -i '/<\/tomcat-users>/i \
 <role rolename="manager-gui"/> \
 <role rolename="admin"/> \
