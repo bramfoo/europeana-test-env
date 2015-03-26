@@ -9,7 +9,7 @@ export POSTGRES_PASSWORD="vagrant"
 # MongoDB
 # Taken from: http://docs.mongodb.org/v2.6/tutorial/install-mongodb-on-ubuntu/
 # Taken from: https://github.com/fideloper/Vaprobash/blob/master/scripts/mongodb.sh
-echo "[databases] Setting up MongoDB..."
+echo "[mongo] Setting up MongoDB..."
 
 # Install MongoDB
 # -qq implies -y --force-yes
@@ -28,7 +28,7 @@ sudo sed -in '/bind_ip/s/^/#/' /etc/mongod.conf
 sudo service mongod restart
 
 # Test if PHP is installed
-echo "[databases] Checking PHP for MongoDB..."
+echo "[mongo] Checking PHP for MongoDB..."
 php -v > /dev/null 2>&1
 PHP_IS_INSTALLED=$?
 
@@ -51,8 +51,8 @@ fi
 
 sleep 1
 while ! grep -m1 "\[initandlisten\] waiting for connections on port ${MONGO_PORT}" < /var/log/mongodb/mongod.log; do
-    echo "[databases] Waiting for Mongo to start..."
+    echo "[mongo] Waiting for Mongo to start..."
     sleep 1
 done
 
-echo "[databases] MongoDB started"
+echo "[mongo] MongoDB started"

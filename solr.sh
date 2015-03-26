@@ -16,15 +16,15 @@ cd ${SOLR_NAME}/example/
 # Solr startup
 java -jar start.jar > /tmp/solr-server-log.txt &
 
-echo "[databases] Setting up Apache Solr..."
+echo "[solr] Setting up Apache Solr..."
 
 sleep 1
 while ! grep -m1 "Registered new searcher" < /tmp/solr-server-log.txt; do
-    echo "[databases] Waiting for Solr to start..."
+    echo "[solr] Waiting for Solr to start..."
     sleep 1
 done
 
-echo "[databases] Apache Solr started. Index test data ..."
+echo "[solr] Apache Solr started. Index test data ..."
 
 # Index some stuff
 cd exampledocs/
