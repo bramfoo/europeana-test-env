@@ -87,13 +87,12 @@ Vagrant.configure(2) do |config|
   # Provision databases (Mongo, Neo4j, PostgreSQL)
   config.vm.provision :shell, path: "mongodb.sh", privileged:false
   config.vm.provision :shell, path: "postgresql.sh", privileged:false
-  #config.vm.provision :shell, path: "neo4j.sh", privileged:false
+  config.vm.provision :shell, path: "neo4j.sh", privileged:false
   # Provision search (Solr)
   #config.vm.provision :shell, path: "solr.sh", privileged:false
-  
+  config.vm.provision :shell, path: "tomcat.sh", privileged:false
   config.vm.provision :shell, path: "buildapi.sh", privileged:false
   
-  config.vm.provision :shell, path: "tomcat.sh", privileged:false
 
   config.vm.provision "shell", inline: <<-SHELL
     PROVISIONED_ON=/etc/vm_provision_on_timestamp
