@@ -4,7 +4,6 @@ set -e
 cd
 
 # directories! Lots of 'm!
-HOME=~
 GIT_HOME=$HOME/git
 CORELIB_HOME=$GIT_HOME/corelib
 API_HOME=$GIT_HOME/api2
@@ -63,4 +62,4 @@ echo "[build api] API successfully built."
 
 # copy api wars to Tomcat
 #cp $API_HOME/api2-demo/target/api-demo.war $TOMCAT_WEBAPP_DIR
-cp $API_HOME/api2-war/target/api.war $TOMCAT_WEBAPP_DIR
+cp ${API_HOME}/api2-war/target/api.war ${HOME}/${TOMCAT_WEBAPP_DIR}
