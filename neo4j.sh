@@ -3,7 +3,7 @@
 # Versions
 GIT_HOME=~/git
 NEO4J_VERSION="2.1.4"
-NEO4J_DIR=neo4j-community-${NEO4J_VERSION}
+NEO4J_DIR=~/neo4j-community-${NEO4J_VERSION}
 PLUGIN_DIR=$NEO4J_DIR/plugins
 
 # Neo4j
@@ -16,8 +16,10 @@ rm neo4j-community-${NEO4J_VERSION}-unix.tar.gz
 # Allow any connection (not only localhost)
 sudo sed -inE '/^#.*address/s/^#//' $NEO4J_DIR/conf/neo4j-server.properties
 # Add plugins
+#sed -i '/thirdparty_jaxrs_classes/a \
+#org.neo4j.server.thirdparty_jaxrs_classes=eu.europeana.neo4j.count=/europeana,eu.europeana.neo4j.initial=/initial,eu.europeana.neo4j.delete=/delete' $NEO4J_DIR/conf/neo4j-server.properties
 sed -i '/thirdparty_jaxrs_classes/a \
-org.neo4j.server.thirdparty_jaxrs_classes=eu.europeana.neo4j.count=/europeana,eu.europeana.neo4j.initial=/initial,eu.europeana.neo4j.delete=/delete' $NEO4J_DIR/conf/neo4j-server.properties
+org.neo4j.server.thirdparty_jaxrs_classes=eu.europeana.neo4j.count=/europeana,eu.europeana.neo4j.initial=/initial' $NEO4J_DIR/conf/neo4j-server.properties
 
 # Run installer
 sudo $NEO4J_DIR/bin/neo4j-installer install
