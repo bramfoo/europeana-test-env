@@ -39,6 +39,7 @@ echo '[bootstrap] Installing Maven 3'
 apt-get -y install maven
 echo "export M2_HOME=/usr/share/maven" >> $VAGRANT_PROFILE 
 echo 'PATH=$M2_HOME/bin:$PATH' >> $VAGRANT_PROFILE 
+echo 'export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=128m"' >> $VAGRANT_PROFILE 
 
 # Git 1.9.x
 echo '[bootstrap] Installing Git 1.9.x'
