@@ -7,11 +7,11 @@ export LANG=en_US.UTF-8
 export LC_ALL=C
 locale-gen en_US.UTF-8
 update-locale LANG=${LANG} LC_ALL=${LC_ALL}
+VAGRANT_PROFILE=/home/vagrant/.profile
 
 # Update all packages, repositories (Java, Mongo, PostgreSQL, Neo4j)
 echo
 echo '[bootstrap] Updating all packages (apt-get update/upgrade)...'
-echo '----------------'
 # Add repo keys
 add-apt-repository -y ppa:webupd8team/java
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
@@ -30,15 +30,15 @@ echo
 # Java 7
 echo '[bootstrap] Installing Java 7'
 echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
-apt-get -y install oracle-java7-set-default > /dev/null
-export JAVA_HOME="/usr/lib/jvm/java-7-oracle/jre"
+apt-get -qq install oracle-java7-set-default > /dev/null
+echo "export JAVA_HOME=/usr/lib/jvm/java-7-oracle/jre" >> $VAGRANT_PROFILE 
 echo '[bootstrap] Java 7 installed'
 
 # Maven 3
 echo '[bootstrap] Installing Maven 3'
 apt-get -y install maven
-export M2_HOME='/usr/share/maven'
-export PATH=$M2_HOME/bin:$PATH
+echo "export M2_HOME=/usr/share/maven" >> $VAGRANT_PROFILE 
+echo 'PATH=$M2_HOME/bin:$PATH' >> $VAGRANT_PROFILE 
 
 # Git 1.9.x
 echo '[bootstrap] Installing Git 1.9.x'
