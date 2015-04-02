@@ -36,8 +36,14 @@ sed -i '/<\/tomcat-users>/i \
 <role rolename="admin"/> \
 <user username="admin" password="admin" roles="admin,manager-gui"\/>' $TOMCAT_DIR/conf/tomcat-users.xml
 
+# Install startup script
+# From: http://askubuntu.com/a/224402
+sudo cp /vagrant/tomcat_init.sh /etc/init.d/tomcat7
+sudo chmod 755 /etc/init.d/tomcat7
+sudo update-rc.d tomcat7 defaults
+
 # startup tomcat
-apache-tomcat-${TOMCAT_VERSION}/bin/startup.sh
+sudo service tomcat7 start
 echo "[tomcat] Tomcat started"
 
 # Create user variables (for use in other scripts)
