@@ -48,6 +48,8 @@ if [ $GIT_BRANCH != "master" ]; then
   cd $API_HOME
   echo "[API] Checking out desired git branch '$GIT_BRANCH' for API ..."
   git checkout $GIT_BRANCH
+else
+  echo "[API] Using $GIT_BRANCH to build CoreLib/API"
 fi
 
 # copy in europeana.properties
