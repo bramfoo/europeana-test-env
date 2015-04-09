@@ -3,8 +3,6 @@
 # Versions
 export MONGO_VERSION="2.6.7"
 export MONGO_PORT="27017"
-export POSTGRES_VERSION="9.3"
-export POSTGRES_PASSWORD="vagrant"
 
 # MongoDB
 # Taken from: http://docs.mongodb.org/v2.6/tutorial/install-mongodb-on-ubuntu/
