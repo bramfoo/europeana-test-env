@@ -53,4 +53,15 @@ while ! grep -m1 "\[initandlisten\] waiting for connections on port ${MONGO_PORT
     sleep 1
 done
 
+# Import data
+echo "[mongo] Importing data"
+# 4 items
+mongoimport --db europeana --collection record --file /vagrant/mongo_ecn_00000.json
+# 6 items
+mongoimport --db europeana --collection record --file /vagrant/mongo_ecn_000002.json
+# 319 items
+mongoimport --db europeana --collection record --file /vagrant/mongo_ecn_2025903.json
+# 5468 items
+mongoimport --db europeana --collection record --file /vagrant/mongo_ecn_2026101.json
+
 echo "[mongo] MongoDB started"
