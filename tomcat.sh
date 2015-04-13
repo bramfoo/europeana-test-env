@@ -13,7 +13,7 @@ TOMCAT_WEBAPP_DIR="$TOMCAT_DIR"/webapps
 TOMCAT_WORK_DIR="$TOMCAT_DIR"/work/Catalina/localhost
 
 echo "[tomcat] Getting & installing Apache Tomcat ..."
-wget --quiet 'http://apache.proserve.nl/tomcat/tomcat-7/v'$TOMCAT_VERSION'/bin/'$TOMCAT_TGZ
+wget --quiet 'http://archive.apache.org/dist/tomcat/tomcat-7/v'$TOMCAT_VERSION'/bin/'$TOMCAT_TGZ
 tar -xf $TOMCAT_TGZ
 rm $TOMCAT_TGZ
 
