@@ -5,7 +5,7 @@
 # Versions
 export SOLR_VERSION="4.10.1"
 export SOLR_NAME="solr-"${SOLR_VERSION}
-export SOLR_HOME="solrhome"
+export SOLR_HOME=${HOME}/solrhome
 
 
 # Solr
@@ -32,19 +32,20 @@ else
 
 	echo "[solr] Configuring solrHome and restarting Tomcat..."	
 	# Set up logging (http://wiki.apache.org/solr/SolrLogging)
-	mkdir -p ${HOME}/${SOLR_HOME}/
-	cp -R ${SOLR_NAME}/example/solr ${HOME}/${SOLR_HOME}/
-	mkdir -p ${HOME}/${SOLR_HOME}/lib/
+	mkdir -p ${SOLR_HOME}/
+	cp -R ${SOLR_NAME}/example/solr ${SOLR_HOME}/
+	mkdir -p ${SOLR_HOME}/lib/
 	cp ${SOLR_NAME}/example/lib/ext/*.jar ${HOME}/${TOMCAT_DIR}/lib/
-	mkdir -p ${HOME}/${SOLR_HOME}/webapps/
-	cp ${SOLR_NAME}/dist/${SOLR_NAME}.war ${HOME}/${SOLR_HOME}/webapps/solr.war
+	mkdir -p ${SOLR_HOME}/webapps/
+	cp ${SOLR_NAME}/dist/${SOLR_NAME}.war ${SOLR_HOME}/webapps/solr.war
 	cp /vagrant/solr.xml ${TOMCAT_DIR}/conf/Catalina/localhost/
 
-	cp ${SOLR_NAME}/example/resources/log4j.properties ${HOME}/${SOLR_HOME}/
+	cp ${SOLR_NAME}/example/resources/log4j.properties ${SOLR_HOME}/
 	# Remove logs/ directory in config
-	sed -i 's|logs/|'"${HOME}/${TOMCAT_DIR}/logs"'|' ${HOME}/${SOLR_HOME}/log4j.properties
-	export JAVA_OPTS="$JAVA_OPTS -Dlog4j.configuration=file:${HOME}/${SOLR_HOME}/log4j.properties"
-	echo 'export JAVA_OPTS="$JAVA_OPTS -Dlog4j.configuration=file:${HOME}/${SOLR_HOME}/log4j.properties"' >> $HOME/.profile
+	sed -i 's|logs/|'"${HOME}/${TOMCAT_DIR}/logs"'|' ${SOLR_HOME}/log4j.properties
+	export JAVA_OPTS="$JAVA_OPTS -Dlog4j.configuration=file:${SOLR_HOME}/log4j.properties"
+	echo 'export SOLR_HOME="${HOME}/solrhome"' >> $HOME/.profile
+	echo 'export JAVA_OPTS="$JAVA_OPTS -Dlog4j.configuration=file:${SOLR_HOME}/log4j.properties"' >> $HOME/.profile
 
 	# Restart Tomcat for logging jars and properties to take effect
 	${HOME}/${TOMCAT_DIR}/bin/shutdown.sh
