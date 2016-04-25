@@ -54,6 +54,9 @@ cd ..
 # (Re)start Neo4j for plugins to take effect
 sudo service neo4j-service start
 
+# Create the required index
+$NEO4J_DIR/bin/neo4j-shell -c "index --create edmsearch2"
+
 # Old method of installing
 # Taken from: http://debian.neo4j.org/
 #sudo apt-get install -qq neo4j=${NEO4J_VERSION}

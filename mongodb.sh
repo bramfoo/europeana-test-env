@@ -55,13 +55,19 @@ done
 
 # Import data
 echo "[mongo] Importing data"
-# 4 items
+# 4 records
 mongoimport --db europeana --collection record --file /vagrant/mongo_ecn_00000.json
-# 6 items
+# 6 records
 mongoimport --db europeana --collection record --file /vagrant/mongo_ecn_000002.json
-# 319 items
+# 46,483 records (large file so disabled; small version limited to 10,000 records)
+#mongoimport --db europeana --collection record --file /vagrant/mongo_ecn_09102.json
+mongoimport --db europeana --collection record --file /vagrant/mongo_ecn_09102_small.json
+# 319 records
 mongoimport --db europeana --collection record --file /vagrant/mongo_ecn_2025903.json
-# 5468 items
+# 5,468 records
 mongoimport --db europeana --collection record --file /vagrant/mongo_ecn_2026101.json
+#  629,498 records (massive file, so disabled; small version limited to 10,000 records)
+#mongoimport --db europeana --collection record --file /vagrant/mongo_ecn_9200384.json
+mongoimport --db europeana --collection record --file /vagrant/mongo_ecn_9200384_small.json
 
 echo "[mongo] MongoDB started"

@@ -1,0 +1,30 @@
+Agent
+Aggregation
+Concept
+ConceptScheme
+EuropeanaAggregation
+Event
+License
+PhysicalThing
+Place
+ProvidedCHO
+Timespan
+WebResource
+
+Mongo queries
+db.record.distinct("agents", {"europeanaCollectionName" : "000002_EDM_test_record"})
+
+var agentRefs = db.record.distinct("agents.$id", {"europeanaCollectionName" : "000002_EDM_test_record"})
+db.Agent.find( { "_id": { $in : agentRefs}})
+
+
+var agentRefs = [ObjectId("528e0524e4b08a57330b873f"), ObjectId("51408f587d1edf25046ff43c")]
+agentRefs.forEach(function(x){
+    db.Agents.find({_id: x.$id})
+});
+
+
+var agentRefs = [DBRef("Agent", ObjectId("528e0524e4b08a57330b873f")), DBRef("Agent", ObjectId("51408f587d1edf25046ff43c"))]
+agentRefs.forEach(function(x){
+    db[x.$ref].find({_id: x.$id})
+});
